@@ -2,32 +2,31 @@
     <div layout="row" layout-align="center center">
         <md-button class="md-raised md-primary" ng-click="vm.showNewDialog($event)">New List</md-button>
     </div>
-    <div ng-repeat="list in vm.lists">
+    <div layout="column" ng-repeat="list in vm.lists">
         <h3 class="md-title">{{list.title}}</h3>
-        <md-list data-as-sortable ng-model="list.items">
-            <div data-as-sortable-item ng-repeat="item in list.items">
-                <h3>{{ item.name }}</h3>
-                <md-list-item class="md-long-text">
-                    <!-- <h2 style="position: absolute; left: 0; top: 50%;">{{$index + 1}}</h2> -->
-                    <!-- <md-button class="md-fab md-primary" data-as-sortable-item-handle>
-                        {{$index + 1}}
-                    </md-button> -->
-                    <img ng-src="{{vm.thumbUrl + item.poster_path}}" alt="" data-as-sortable-item-handle />
-                    <div class="md-list-item-text">
-                        <md-input-container>
-                            <label>Notes</label>
-                            <textarea ng-model="item.description" md-maxlength="150"></textarea>
-                        </md-input-container>
-                    </div>
-                </md-list-item>
-            </div>
-            <md-autocomplete md-selected-item="list.selectedItem" md-selected-item-change="vm.addToList(list)" md-search-text="list.searchText" md-items="item in vm.getMatches(list.searchText, list)" md-item-text="item.name" md-min-length="2" md-no-cache="true">
-                <span md-highlight-text="list.searchText">{{item.name}}</span>
-                <!-- <md-item-template>
+        <div layout="column" data-as-sortable ng-model="list.items">
+            <md-card ng-repeat="item in list.items" data-as-sortable-item>
+                <md-button class="md-fab md-mini" aria-label="FAB" style="position: absolute;">
+                    {{$index + 1}}
+                </md-button>
+                <md-card-title>
+                    <md-card-title-media>
+                        <div class="card-media"><img ng-src="{{vm.imageUrl + item.poster_path}}" alt="" data-as-sortable-item-handle /></div>
+                    </md-card-title-media>
+                    <md-card-title-text style="margin-left: 10px;">
+                        <span class="md-headline">{{item.name}}</span>
+                        <span class="md-subhead">{{item.first_air_date}}</span>
+                        <p>{{item.overview}}</p>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+        <md-autocomplete md-selected-item="list.selectedItem" md-selected-item-change="vm.addToList(list)" md-search-text="list.searchText" md-items="item in vm.getMatches(list.searchText, list)" md-item-text="item.name" md-min-length="2" md-no-cache="true">
+            <span md-highlight-text="list.searchText">{{item.name}}</span>
+            <!-- <md-item-template>
                     <img ng-src="{{vm.thumbUrl + item.poster_path}}" alt="">
                     <span>{{item.name}}</span>
                 </md-item-template> -->
-            </md-autocomplete>
-        </md-list>
+        </md-autocomplete>
     </div>
 </md-content>
