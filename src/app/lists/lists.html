@@ -1,0 +1,33 @@
+<md-content>
+    <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary" ng-click="vm.showNewDialog($event)">New List</md-button>
+    </div>
+    <div ng-repeat="list in vm.lists">
+        <h3 class="md-title">{{list.title}}</h3>
+        <md-list data-as-sortable ng-model="list.items">
+            <div data-as-sortable-item ng-repeat="item in list.items">
+                <h3>{{ item.name }}</h3>
+                <md-list-item class="md-long-text">
+                    <!-- <h2 style="position: absolute; left: 0; top: 50%;">{{$index + 1}}</h2> -->
+                    <!-- <md-button class="md-fab md-primary" data-as-sortable-item-handle>
+                        {{$index + 1}}
+                    </md-button> -->
+                    <img ng-src="{{vm.thumbUrl + item.poster_path}}" alt="" data-as-sortable-item-handle />
+                    <div class="md-list-item-text">
+                        <md-input-container>
+                            <label>Notes</label>
+                            <textarea ng-model="item.description" md-maxlength="150"></textarea>
+                        </md-input-container>
+                    </div>
+                </md-list-item>
+            </div>
+            <md-autocomplete md-selected-item="list.selectedItem" md-selected-item-change="vm.addToList(list)" md-search-text="list.searchText" md-items="item in vm.getMatches(list.searchText, list)" md-item-text="item.name" md-min-length="2" md-no-cache="true">
+                <span md-highlight-text="list.searchText">{{item.name}}</span>
+                <!-- <md-item-template>
+                    <img ng-src="{{vm.thumbUrl + item.poster_path}}" alt="">
+                    <span>{{item.name}}</span>
+                </md-item-template> -->
+            </md-autocomplete>
+        </md-list>
+    </div>
+</md-content>
