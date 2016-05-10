@@ -15,7 +15,7 @@
                     </md-card-title-media>
                     <md-card-title-text style="margin-left: 10px;">
                         <span class="md-headline">{{item.name}}</span>
-                        <span class="md-subhead">{{item.first_air_date}}</span>
+                        <span class="md-subhead">{{vm.getYear(item.first_air_date)}}</span>
                         <p>{{item.overview}}</p>
                     </md-card-title-text>
                 </md-card-title>

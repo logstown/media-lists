@@ -14,6 +14,7 @@
         vm.showNewDialog = showNewDialog;
         vm.getMatches = getMatches;
         vm.addToList = addToList;
+        vm.getYear = getYear;
 
         activate();
 
@@ -76,6 +77,10 @@
             list.items.push(list.selectedItem);
 
             list.searchText = '';
+        }
+
+        function getYear(str) {
+            return '(' + str.split('-')[0] + ')';
         }
     }
 })();
