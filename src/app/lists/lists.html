@@ -2,21 +2,21 @@
     <div layout="row" layout-align="center center">
         <md-button class="md-raised md-primary" ng-click="vm.showNewDialog($event)">New List</md-button>
     </div>
-    <div layout="column" ng-repeat="list in vm.lists">
+    <div layout="column" ng-repeat="list in vm.lists" style="margin: 0 25%;">
         <h3 class="md-title">{{list.title}}</h3>
-        <div layout="column" data-as-sortable ng-model="list.items">
+        <div layout="column" data-as-sortable ng-model="list.items" layout-margin layout-padding>
             <md-card ng-repeat="item in list.items" data-as-sortable-item>
                 <md-button class="md-fab md-mini" aria-label="FAB" style="position: absolute;">
                     {{$index + 1}}
                 </md-button>
                 <md-card-title>
-                    <md-card-title-media>
-                        <div class="card-media"><img ng-src="{{vm.imageUrl + item.poster_path}}" alt="" data-as-sortable-item-handle /></div>
-                    </md-card-title-media>
                     <md-card-title-text style="margin-left: 10px;">
-                        <span class="md-headline">{{item.name}}</span>
-                        <span class="md-subhead">{{vm.getYear(item.first_air_date)}}</span>
-                        <p>{{item.overview}}</p>
+                        <p style="margin-top:0px">
+                            <span class="md-headline">{{item.name}}</span>
+                            <span class="md-subhead">{{vm.getYear(item.first_air_date)}}</span>
+                            <img ng-src="{{vm.imageUrl + item.poster_path}}" alt="" style="float: left; width: 200px; margin-right: 10px;" data-as-sortable-item-handle />
+                            <br> {{item.overview}}
+                        </p>
                     </md-card-title-text>
                 </md-card-title>
             </md-card>
